@@ -17,15 +17,15 @@ with codecs.open('CHANGELOG.rst', encoding='utf-8') as f:
 setup(
     name='django-pypuppetdb',
     version='0.0.1',
-    author='Ronald van Zon',
-    author_email='rvzon84+django-pypuppetdb@gmail.com',
-    packages=find_packages(),
     url='https://github.com/Eagllus/django-pypuppetdb',
     license='Apache License 2.0',
     description='Handles authorization for Django by using puppetdb users',
     long_description='\n'.join((README, CHANGELOG)),
     keywords='puppet puppetdb django authorization tastypie',
-    install_requires=["pypuppetdb"],
+
+    author='Ronald van Zon',
+    author_email='rvzon84+django-pypuppetdb@gmail.com',
+    packages=find_packages(),
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
