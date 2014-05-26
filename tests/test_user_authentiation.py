@@ -1,14 +1,15 @@
 from django.test import TestCase, RequestFactory
 from mock import patch
 from pypuppetdb.types import Resource, Node
-from passlib.hash import sha512_crypt
-from django-pypuppetdb.user_authentication import UserAuthentication
+
+from django_pypuppetdb.user_authentication import UserAuthentication
+
 
 UNAUTHORIZED = 401
 
 
 def generator():
-    yield Resource('cert', 'test.user', 'User', [],  False, '', 0, {})
+    yield Resource('cert', 'test.user', 'User', [], False, '', 0, {})
 
 
 def trigger_error(node):
