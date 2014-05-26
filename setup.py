@@ -15,9 +15,9 @@ with codecs.open('CHANGELOG.rst', encoding='utf-8') as f:
     CHANGELOG = f.read()
 
 setup(
-    name='django-pypuppetdb',
+    name='django_pypuppetdb',
     version='0.0.1',
-    url='https://github.com/Eagllus/django-pypuppetdb',
+    url='https://github.com/nedap/django-pypuppetdb',
     license='Apache License 2.0',
     description='Handles authorization for Django by using puppetdb users',
     long_description='\n'.join((README, CHANGELOG)),

@@ -1,6 +1,7 @@
 pypuppetdb>=0.1.1
-pytest==2.5.0
-pytest-pep8==1.0.5
+pytest==2.5.2
+pytest-pep8==1.0.6
+python-coveralls==2.4.2
 mock==1.0.1
 coverage==3.7.1
 passlib==1.6.2

@@ -1,2 +1,2 @@
 [run]
-source = django-pypuppetdb
+source = django_pypuppetdb

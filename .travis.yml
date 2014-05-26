@@ -15,4 +15,4 @@ after_success:
 notifications:
   email: false
 
-script: coverage run --source django-pypuppetdb -m py.test --pep8
+script: coverage run --rcfile=.coveragesrc `which py.test` -v --pep8
