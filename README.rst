@@ -6,7 +6,7 @@ django-pypuppetdb
    :target: https://travis-ci.org/nedap/django-pypuppetdb
 
 .. image:: https://coveralls.io/repos/nedap/django-pypuppetdb/badge.png
-   :target: https://coveralls.io/r/Eagllus/django-pypuppetdb
+   :target: https://coveralls.io/r/nedap/django-pypuppetdb
 
 .. image:: https://pypip.in/d/django-pypuppetdb/badge.png
    :target: https://crate.io/packages/django-pypuppetdb
