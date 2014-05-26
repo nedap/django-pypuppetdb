@@ -35,7 +35,11 @@ class UserAuthentication(object):
 
     @staticmethod
     def check_puppetdb_user(username):
-        puppet_db = pypuppetdb.connect(host=settings.PUPPETDB_HOST, port=settings.PUPPETDB_PORT, ssl_verify=settings.PUPPETDB_SSL_VERIFY, ssl_key=settings.PUPPETDB_KEY, ssl_cert=settings.PUPPETDB_CERT)
+        puppet_db = pypuppetdb.connect(host=settings.PUPPETDB_HOST,
+                                       port=settings.PUPPETDB_PORT,
+                                       ssl_verify=settings.PUPPETDB_SSL_VERIFY,
+                                       ssl_key=settings.PUPPETDB_KEY,
+                                       ssl_cert=settings.PUPPETDB_CERT)
 
         try:
             node = puppet_db.node(settings.PUPPETDB_NODE)
