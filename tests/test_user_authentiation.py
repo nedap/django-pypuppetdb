@@ -37,7 +37,7 @@ class TestUserAuthentication(TestCase):
     def test_check_http_authorization_with_valid_data(self):
         self.request.META[
             'HTTP_AUTHORIZATION'] = 'Basic dXNlcm5hbWU6cGFzc3dvcmQ='
-        self.assertEqual([u'username', u'password'],
+        self.assertEqual(['username', 'password'],
                          self.ua.check_http_authorization(self.request))
 
     @patch('pypuppetdb.types.Node.resources')
@@ -59,14 +59,18 @@ class TestUserAuthentication(TestCase):
     def test_check_puppetdb_verify__correct_password(self):
         user = lambda: None
         user.parameters = {
-            'password': u'$6$rounds=100000$oj7kfKZU.VKTRkF2$GYjwfj7b/BfhAyT1BmXitF76uYiZDh9IuvEsZggm/x9HiinIkPihMeoUvOQ.uffUtAS6UxSpdbWkKyJ5/2IUY0'}
+            'password': '$6$rounds=100000$oj7kfKZU.VKTRkF2$GYjwfj7b/BfhAyT1BmX\
+                        itF76uYiZDh9IuvEsZggm/x9HiinIkPihMeoUvOQ.uffUtAS6UxSpd\
+                        bWkKyJ5/2IUY0'}
         self.assertTrue(
             self.ua.check_puppetdb_verify_password(user, 'password'))
 
     def test_check_puppetdb_verify_incorrect_password(self):
         user = lambda: None
         user.parameters = {
-            'password': u'$6$rounds=100000$oj7kfKZU.VKTRkF2$GYjwfj7b/BfhAyT1BmXitF76uYiZDh9IuvEsZggm/x9HiinIkPihMeoUvOQ.uffUtAS6UxSpdbWkKyJ5/2IUY0'}
+            'password': '$6$rounds=100000$oj7kfKZU.VKTRkF2$GYjwfj7b/BfhAyT1BmX\
+                        itF76uYiZDh9IuvEsZggm/x9HiinIkPihMeoUvOQ.uffUtAS6UxSpd\
+                        bWkKyJ5/2IUY0'}
         self.assertFalse(
             self.ua.check_puppetdb_verify_password(user, '1234567890'))
 
