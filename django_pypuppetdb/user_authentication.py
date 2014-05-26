@@ -9,10 +9,10 @@ from requests import ConnectionError
 class UserAuthentication(object):
     def is_authenticated(self, request, **kwargs):
         bits = self.check_http_authorization(request, **kwargs)
-        if not bits is None:
+        if bits is not None:
             user = self.check_puppetdb_user(bits)
 
-            if not user is None and not user is False:
+            if user is not None and user is not False:
                 return self.check_puppetdb_verify_password(user, bits)
 
     def check_http_authorization(self, request, **kwargs):
