@@ -8,14 +8,14 @@ from requests import ConnectionError
 
 class UserAuthentication(object):
     def is_authenticated(self, request, **kwargs):
-        bits = self.check_http_authorization(request, **kwargs)
+        bits = self.check_authorization(request, **kwargs)
         if bits is not None:
-            user = self.check_puppetdb_user(bits)
+            user = self.check_user(bits)
 
             if user is not None and user is not False:
-                return self.check_puppetdb_verify_password(user, bits)
+                return self.verify_password(user, bits)
 
-    def check_http_authorization(self, request, **kwargs):
+    def check_authorization(self, request, **kwargs):
         if not request.META.get('HTTP_AUTHORIZATION'):
             return None
 
@@ -34,7 +34,7 @@ class UserAuthentication(object):
         return bits
 
     @staticmethod
-    def check_puppetdb_user(username):
+    def check_user(username):
         puppet_db = pypuppetdb.connect(host=settings.PUPPETDB_HOST,
                                        port=settings.PUPPETDB_PORT,
                                        ssl_verify=settings.PUPPETDB_SSL_VERIFY,
@@ -50,7 +50,7 @@ class UserAuthentication(object):
             return None
 
     @staticmethod
-    def check_puppetdb_verify_password(user, password):
+    def verify_password(user, password):
         try:
             return sha512_crypt.verify(password, user.parameters['password'])
         except:

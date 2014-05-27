@@ -1,3 +1,14 @@
+"""
+If you want to use pypuppetdb in Django you will have to tell Django
+that the backend uses django_pypuppetdb. See the example below.
+
+If you have tastypie installed the first time a user logs-in
+it will make a unique api key for the user.
+
+AUTHENTICATION_BACKENDS = (
+    'django_pypuppetdb.django.PuppetDbAuthentication',
+)
+"""
 import logging
 
 from django.contrib.auth.models import User
@@ -9,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 class PuppetDbAuthentication(object):
     def authenticate(self, username=None, password=None):
-        user = UserAuthentication.check_puppetdb_user(username)
+        user = UserAuthentication.check_user(username)
 
         if user is False:
             logger.error('Connection Failed')
@@ -19,8 +30,7 @@ class PuppetDbAuthentication(object):
             logger.error('Nothing is return from puppetdb')
             return None
 
-        if (user and
-            UserAuthentication.check_puppetdb_verify_password(user, password)):
+        if user and UserAuthentication.verify_password(user, password):
             user, created = User.objects.get_or_create(username=username)
 
             try:
