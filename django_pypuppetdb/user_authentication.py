@@ -27,7 +27,7 @@ class UserAuthentication(object):
         except:
             return None
 
-        bits = user_pass.split(':', 1)
+        bits = user_pass.split(':')
 
         if len(bits) != 2:
             return None
