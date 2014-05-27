@@ -16,7 +16,9 @@ def pytest_configure():
         CACHES={'default': {
             'BACKEND': 'django.core.cache.backends.dummy.DummyCache'
         }},
-        INSTALLED_APPS=('django_bootstrap_breadcrumbs',),
+        INSTALLED_APPS=(
+            'django.contrib.auth',
+        ),
         ROOT_URLCONF='tests.urls',
 
         # Puppetdb config settings
