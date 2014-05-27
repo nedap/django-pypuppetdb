@@ -44,7 +44,8 @@ class TestUserAuthentication(TestCase):
         self.assertEqual(expect, result)
 
     def test_check_http_authorization_with_to_much_data(self):
-        self.request.META['HTTP_AUTHORIZATION'] = 'Basic dXNlcjpwYXNzOnNvbWV0aGluZw=='
+        self.request.META[
+            'HTTP_AUTHORIZATION'] = 'Basic dXNlcjpwYXNzOnNvbWV0aGluZw=='
         self.assertIsNone(self.ua.check_http_authorization(self.request))
 
     @patch('pypuppetdb.types.Node.resources')
