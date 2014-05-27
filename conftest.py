@@ -11,9 +11,11 @@ def pytest_configure():
     settings.configure(
         DATABASES={'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': ':memory:'}},
+            'NAME': ':memory:'
+        }},
         CACHES={'default': {
-            'BACKEND': 'django.core.cache.backends.dummy.DummyCache'}},
+            'BACKEND': 'django.core.cache.backends.dummy.DummyCache'
+        }},
         INSTALLED_APPS=('django_bootstrap_breadcrumbs',),
         ROOT_URLCONF='tests.urls',
 
