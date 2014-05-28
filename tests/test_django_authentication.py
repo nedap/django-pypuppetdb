@@ -1,13 +1,20 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
+from django.test.runner import setup_databases
 from mock import patch
-from django_pypuppetdb.django_authentication import PuppetDbAuthentication
+from django_pypuppetdb.django_authentication \
+    import DjangoPuppetDBAuthentication
 
 
-class TestAccountModel(TestCase):
+# Only create a database once
+setup_databases(1, 1)
+
+
+class TestDjangoAuthentication(TestCase):
     def setUp(self):
-        self.user = User(username='test', email='test@nedap.com')
-        self.auth = PuppetDbAuthentication()
+        self.user = User.objects.create(
+            username='test', email='test@nedap.com')
+        self.auth = DjangoPuppetDBAuthentication()
 
     def test_authenticate_without_user(self):
         self.assertIsNone(self.auth.authenticate())
@@ -44,7 +51,6 @@ class TestAccountModel(TestCase):
         user = self.auth.authenticate('new user', 'password')
         self.assertIsInstance(user, User)
         self.assertEqual(user.username, 'new user')
-        self.assertIsNotNone(user.api_key)
 
     def test_get_user_with_incorrect_id(self):
         self.assertIsNone(self.auth.get_user(2))
