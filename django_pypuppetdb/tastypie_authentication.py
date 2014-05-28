@@ -18,7 +18,7 @@ from tastypie.models import create_api_key
 logger = logging.getLogger(__name__)
 
 
-class TastypieAuthentication(object):
+class PuppetDBAuthentication(object):
     def authenticate(self, username=None, password=None):
         user = UserAuthentication.check_user(username)
 

@@ -15,7 +15,7 @@ from django_pypuppetdb.user_authentication import UserAuthentication
 logger = logging.getLogger(__name__)
 
 
-class DjangoPuppetDBAuthentication(object):
+class PuppetDBAuthentication(object):
     def authenticate(self, username=None, password=None):
         user = UserAuthentication.check_user(username)
 

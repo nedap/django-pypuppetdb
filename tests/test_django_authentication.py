@@ -2,8 +2,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.test.runner import setup_databases
 from mock import patch
-from django_pypuppetdb.django_authentication \
-    import DjangoPuppetDBAuthentication
+from django_pypuppetdb.django_authentication import PuppetDBAuthentication
 
 
 # Only create a database once
@@ -14,7 +13,7 @@ class TestDjangoAuthentication(TestCase):
     def setUp(self):
         self.user = User.objects.create(
             username='test', email='test@nedap.com')
-        self.auth = DjangoPuppetDBAuthentication()
+        self.auth = PuppetDBAuthentication()
 
     def test_authenticate_without_user(self):
         self.assertIsNone(self.auth.authenticate())
