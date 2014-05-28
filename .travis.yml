@@ -8,6 +8,12 @@ install:
   - pip install -r requirements.txt
   - pip install -r test-requirements.txt
 
+env:
+  - DB=sqlite3
+
+before_script:
+  - python manage.py syncdb --noinput
+
 after_success:
   - coverage report -m
   - coveralls
