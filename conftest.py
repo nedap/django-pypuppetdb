@@ -19,6 +19,7 @@ def pytest_configure():
         INSTALLED_APPS=(
             'django.contrib.auth',
             'django.contrib.contenttypes',
+            'tastypie',
         ),
         ROOT_URLCONF='tests.urls',
 
@@ -26,7 +27,7 @@ def pytest_configure():
         PUPPETDB_HOST = 'localhost',
         PUPPETDB_PORT = 8080,
         PUPPETDB_NODE = 'node',
-        PUPPETDB_KEY  = None,
+        PUPPETDB_KEY = None,
         PUPPETDB_CERT = None,
         PUPPETDB_SSL_VERIFY = False
     )
