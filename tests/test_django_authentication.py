@@ -28,6 +28,16 @@ class TestDjangoAuthentication(TestCase):
         'django_pypuppetdb.user_authentication.UserAuthentication.check_user')
     @patch('django_pypuppetdb.user_authentication.UserAuthentication.'
            'verify_password')
+    def test_authenticate_incorrect_password(
+            self, puppetdb_user, verify_password):
+        puppetdb_user.return_value = None
+        verify_password.return_value = True
+        self.assertIsNone(self.auth.authenticate('test'))
+
+    @patch(
+        'django_pypuppetdb.user_authentication.UserAuthentication.check_user')
+    @patch('django_pypuppetdb.user_authentication.UserAuthentication.'
+           'verify_password')
     def test_authenticate_with_existing_user(
             self, check_user, verify_password):
         check_user.return_value = 'test'
