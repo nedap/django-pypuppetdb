@@ -14,3 +14,7 @@ Separating Django and Tastypie dependency.
 =====
 Renaming Django authenticaton and updated all tests
 Renaming Tastyie authentication and updated all tests
+
+0.1.0
+=====
+Django and Tastypie fully tested
