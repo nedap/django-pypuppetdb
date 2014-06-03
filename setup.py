@@ -28,7 +28,7 @@ setup(
     author_email='rvzon84+django-pypuppetdb@gmail.com',
     packages=find_packages(),
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Natural Language :: English',
         'License :: OSI Approved :: Apache Software License',
