@@ -29,5 +29,6 @@ def pytest_configure():
         PUPPETDB_NODE = 'node',
         PUPPETDB_KEY = None,
         PUPPETDB_CERT = None,
-        PUPPETDB_SSL_VERIFY = False
+        PUPPETDB_SSL_VERIFY = False,
+        PUPPETDB_ADMIN_GROUP = 'admins'
     )
