@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.test.runner import setup_databases
-from mock import patch
+from mock import patch, Mock
 from django_pypuppetdb.tastypie_authentication import PuppetDBAuthentication
 
 try:
@@ -30,7 +30,7 @@ try:
         @patch('django_pypuppetdb.user_authentication.UserAuthentication.'
                'verify_password')
         def test_authenticate_incorrect_password(
-                self, puppetdb_user, verify_password):
+                self, verify_password, puppetdb_user):
             puppetdb_user.return_value = None
             verify_password.return_value = True
             self.assertIsNone(self.auth.authenticate('test'))
@@ -40,8 +40,8 @@ try:
         @patch('django_pypuppetdb.user_authentication.UserAuthentication.'
                'verify_password')
         def test_authenticate_with_existing_user(
-                self, check_user, verify_password):
-            check_user.return_value = 'test'
+                self, verify_password, check_user):
+            check_user = Mock(parameters={'groups': 'a'})
             verify_password.return_value = True
             user = self.auth.authenticate('test', 'password')
             self.assertIsInstance(user, User)
@@ -52,8 +52,8 @@ try:
         @patch('django_pypuppetdb.user_authentication.UserAuthentication.'
                'verify_password')
         def test_authenticate_with_new_user(
-                self, check_user, verify_password):
-            check_user.return_value = 'new user'
+                self, verify_password, check_user):
+            check_user = Mock(parameters={'groups': 'a'})
             verify_password.return_value = True
             user = self.auth.authenticate('new user', 'password')
             self.assertIsInstance(user, User)

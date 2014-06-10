@@ -31,7 +31,8 @@ class PuppetDBAuthentication(object):
             logger.error('Nothing is return from puppetdb')
             return None
 
-        if puppet_user and UserAuthentication.verify_password(puppet_user, password):
+        if puppet_user and \
+                UserAuthentication.verify_password(puppet_user, password):
             new_user, created = User.objects.get_or_create(username=username)
             user_groups = puppet_user.parameters['groups']
             create_api_key(self, instance=new_user, created=created)
