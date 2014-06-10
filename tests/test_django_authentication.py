@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.test.runner import setup_databases
-from mock import patch
+from mock import patch, Mock
 from django_pypuppetdb.django_authentication import PuppetDBAuthentication
 
 
@@ -18,41 +18,36 @@ class TestDjangoAuthentication(TestCase):
     def test_authenticate_without_connection(self):
         self.assertIsNone(self.auth.authenticate())
 
-    @patch(
-        'django_pypuppetdb.user_authentication.UserAuthentication.check_user')
-    def test_authenticate_incorrect_username(self, check_user):
-        check_user.return_value = None
+    @patch('django_pypuppetdb.user_authentication.UserAuthentication.'
+           'check_user', Mock(return_value=None))
+    def test_authenticate_incorrect_username(self):
         self.assertIsNone(self.auth.authenticate('test'))
 
-    @patch(
-        'django_pypuppetdb.user_authentication.UserAuthentication.check_user')
     @patch('django_pypuppetdb.user_authentication.UserAuthentication.'
-           'verify_password')
-    def test_authenticate_incorrect_password(
-            self, puppetdb_user, verify_password):
-        puppetdb_user.return_value = None
-        verify_password.return_value = True
+           'check_user', Mock(return_value=None))
+    @patch('django_pypuppetdb.user_authentication.UserAuthentication.'
+           'verify_password', Mock(return_value=True))
+    def test_authenticate_incorrect_password(self):
         self.assertIsNone(self.auth.authenticate('test'))
 
-    @patch(
-        'django_pypuppetdb.user_authentication.UserAuthentication.check_user')
     @patch('django_pypuppetdb.user_authentication.UserAuthentication.'
-           'verify_password')
-    def test_authenticate_with_existing_user(
-            self, check_user, verify_password):
-        check_user.return_value = 'test'
-        verify_password.return_value = True
+           'check_user', Mock(
+               return_value=Mock(parameters={'groups': 'a'})
+           ))
+    @patch('django_pypuppetdb.user_authentication.UserAuthentication.'
+           'verify_password', Mock(return_value=True))
+    def test_authenticate_with_existing_user(self):
         user = self.auth.authenticate('test', 'password')
         self.assertIsInstance(user, User)
         self.assertEqual(user.username, 'test')
 
-    @patch(
-        'django_pypuppetdb.user_authentication.UserAuthentication.check_user')
     @patch('django_pypuppetdb.user_authentication.UserAuthentication.'
-           'verify_password')
-    def test_authenticate_with_new_user(self, check_user, verify_password):
-        check_user.return_value = 'new user'
-        verify_password.return_value = True
+           'check_user', Mock(
+               return_value=Mock(parameters={'groups': 'a'})
+           ))
+    @patch('django_pypuppetdb.user_authentication.UserAuthentication.'
+           'verify_password', Mock(return_value=True))
+    def test_authenticate_with_new_user(self):
         user = self.auth.authenticate('new user', 'password')
         self.assertIsInstance(user, User)
         self.assertEqual(user.username, 'new user')
