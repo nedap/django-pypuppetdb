@@ -23,8 +23,8 @@ in PuppetDB. It is implemented using the `requests`_ library.
 To use this library you will need:
     * Python 2.7+
     * Python 3.3+
-    * pypuppetdb
     * Django 1.6+
+    * pypuppetdb
 
 Installation
 ============
@@ -59,6 +59,7 @@ add the following line to you settings.
         PUPPETDB_KEY = None,
         PUPPETDB_CERT = None,
         PUPPETDB_SSL_VERIFY = False
+        PUPPETDB_ADMIN_GROUP = 'admins'
 
 Tastypie
 --------
