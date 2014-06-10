@@ -21,4 +21,6 @@ Django and Tastypie fully tested
 
 0.1.1
 =====
-Adding check for puppet groups
+Adding check for puppet group that will check if the user
+is in the group defined in PUPPETDB_ADMIN_GROUP. This will give the
+user admin rights allowing the user to login django-admin.
