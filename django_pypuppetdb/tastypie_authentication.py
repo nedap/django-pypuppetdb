@@ -5,7 +5,7 @@ that the backend uses django_pypuppetdb. See the example below.
 The first time a user logs-in it will create a tastypie api key for the user.
 
 AUTHENTICATION_BACKENDS = (
-    'django_pypuppetdb.django.TastypieAuthentication',
+    'django_pypuppetdb.tastypie_authentication.PuppetDBAuthentication',
 )
 """
 import logging
