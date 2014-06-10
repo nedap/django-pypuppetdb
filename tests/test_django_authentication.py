@@ -40,6 +40,8 @@ class TestDjangoAuthentication(TestCase):
         user = self.auth.authenticate('test', 'password')
         self.assertIsInstance(user, User)
         self.assertEqual(user.username, 'test')
+        self.assertFalse(user.is_staff)
+        self.assertFalse(user.is_superuser)
 
     @patch('django_pypuppetdb.user_authentication.UserAuthentication.'
            'check_user', Mock(
@@ -51,6 +53,21 @@ class TestDjangoAuthentication(TestCase):
         user = self.auth.authenticate('new user', 'password')
         self.assertIsInstance(user, User)
         self.assertEqual(user.username, 'new user')
+        self.assertFalse(user.is_staff)
+        self.assertFalse(user.is_superuser)
+
+    @patch('django_pypuppetdb.user_authentication.UserAuthentication.'
+           'check_user', Mock(
+               return_value=Mock(parameters={'groups': 'admins'})
+           ))
+    @patch('django_pypuppetdb.user_authentication.UserAuthentication.'
+           'verify_password', Mock(return_value=True))
+    def test_user_has_admin_rights(self):
+        user = self.auth.authenticate('new user', 'password')
+        self.assertIsInstance(user, User)
+        self.assertEqual(user.username, 'new user')
+        self.assertTrue(user.is_staff)
+        self.assertTrue(user.is_superuser)
 
     def test_get_user_with_incorrect_id(self):
         self.assertIsNone(self.auth.get_user(2))
