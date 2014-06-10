@@ -18,3 +18,7 @@ Renaming Tastyie authentication and updated all tests
 0.1.0
 =====
 Django and Tastypie fully tested
+
+0.1.1
+=====
+Adding check for puppet groups
