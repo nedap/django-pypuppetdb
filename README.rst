@@ -23,8 +23,10 @@ in PuppetDB. It is implemented using the `requests`_ library.
 To use this library you will need:
     * Python 2.7+
     * Python 3.3+
-    * Django 1.6+
+    * Django 1.6
     * pypuppetdb
+
+Currently I'm working on making it 1.7 compatible
 
 Installation
 ============
