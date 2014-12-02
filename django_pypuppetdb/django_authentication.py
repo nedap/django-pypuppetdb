@@ -10,14 +10,15 @@ import logging
 
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.contrib.auth.backends import ModelBackend
 from django_pypuppetdb.user_authentication import UserAuthentication
 
 
 logger = logging.getLogger(__name__)
 
 
-class PuppetDBAuthentication(object):
-    def authenticate(self, username=None, password=None):
+class PuppetDBAuthentication(ModelBackend):
+    def authenticate(self, username=None, password=None, **kwargs):
         puppet_user = UserAuthentication.check_user(username)
 
         if puppet_user is False:
