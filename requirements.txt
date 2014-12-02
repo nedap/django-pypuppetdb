@@ -1,2 +1,2 @@
-django>=1.6.4
+django==1.6.7
 pypuppetdb>=0.1.1
