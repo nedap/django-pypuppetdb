@@ -16,6 +16,10 @@ def trigger_error(node):
     raise StopIteration
 
 
+def fake_user():
+    return lambda: None
+
+
 class TestUserAuthentication(TestCase):
     def setUp(self):
         self.ua = UserAuthentication()
@@ -95,12 +99,12 @@ class TestUserAuthentication(TestCase):
         self.assertEqual(expect, result)
 
     def test_verify_password(self):
-        user = lambda: None
+        user = fake_user()
         user.parameters = {'password': self.password}
         result = self.ua.verify_password(user, 'password')
         self.assertTrue(result)
 
     def test_verify_password_with_invalid_password(self):
-        user = lambda: None
+        user = fake_user()
         user.parameters = {'password': self.password}
         self.assertFalse(self.ua.verify_password(user, '1234567890'))
