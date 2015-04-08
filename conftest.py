@@ -24,11 +24,11 @@ def pytest_configure():
         ROOT_URLCONF='tests.urls',
 
         # Puppetdb config settings
-        PUPPETDB_HOST = 'localhost',
-        PUPPETDB_PORT = 8080,
-        PUPPETDB_NODE = 'node',
-        PUPPETDB_KEY = None,
-        PUPPETDB_CERT = None,
-        PUPPETDB_SSL_VERIFY = False,
-        PUPPETDB_ADMIN_GROUP = 'admins'
+        PUPPETDB_HOST='localhost',
+        PUPPETDB_PORT=8080,
+        PUPPETDB_NODE='node',
+        PUPPETDB_KEY=None,
+        PUPPETDB_CERT=None,
+        PUPPETDB_SSL_VERIFY=False,
+        PUPPETDB_ADMIN_GROUP='admins'
     )

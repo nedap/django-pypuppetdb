@@ -1,3 +1,4 @@
+import django
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.test.runner import setup_databases
@@ -7,6 +8,7 @@ from django_pypuppetdb.tastypie_authentication import PuppetDBAuthentication
 try:
     import tastypie
 
+    django.setup()
     # Only create a database once
     setup_databases(1, 1)
 
