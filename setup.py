@@ -17,7 +17,7 @@ with codecs.open('CHANGELOG.rst', encoding='utf-8') as f:
 
 setup(
     name='django_pypuppetdb',
-    version='0.1.3',
+    version='0.2.0',
     url='https://github.com/nedap/django-pypuppetdb',
     license='Apache License 2.0',
     description='Handles authorization for Django by using puppetdb users',
