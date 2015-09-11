@@ -28,3 +28,7 @@ user admin rights allowing the user to login django-admin.
 0.2.0
 =====
 Updating files to make it django 1.8 compatible.
+
+0.2.1
+=====
+Updating requirements file to newest versions.
