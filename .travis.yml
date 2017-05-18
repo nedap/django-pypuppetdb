@@ -6,11 +6,10 @@ python:
   - 3.6
 
 env:
-  - DJANGO=1.11
-  - DJANGO=1.10
-
-  - PYPUPPETDB=0.1.1
-  - PYPUPPETDB=0.3.2
+  - DJANGO=1.11; PYPUPPETDB=0.1.1
+  - DJANGO=1.11; PYPUPPETDB=0.3.2
+  - DJANGO=1.10; PYPUPPETDB=0.1.1
+  - DJANGO=1.10; PYPUPPETDB=0.3.2
 
 install:
   - pip install -q django==$DJANGO
