@@ -8,11 +8,8 @@ django-pypuppetdb
 .. image:: https://coveralls.io/repos/nedap/django-pypuppetdb/badge.png
    :target: https://coveralls.io/r/nedap/django-pypuppetdb
 
-.. image:: https://pypip.in/d/django_pypuppetdb/badge.png
+.. image:: https://img.shields.io/pypi/v/nine.svg
    :target: https://pypi.python.org/pypi/django_pypuppetdb
-
-.. image:: https://pypip.in/v/django_pypuppetdb/badge.png
-   :target: https://crate.io/packages/django-pypuppetdb
 
 django-pypuppetdb is a library that handles authentication
 by using the PuppetDB's REST API to get Users that are registrated
@@ -23,7 +20,7 @@ in PuppetDB. It is implemented using the `requests`_ library.
 To use this library you will need:
     * Python 2.7+
     * Python 3.3+
-    * Django 1.8
+    * Django 1.10+
     * pypuppetdb
 
 Installation
