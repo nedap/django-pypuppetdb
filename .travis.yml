@@ -3,8 +3,18 @@ language: python
 python:
   - 2.7
   - 3.4
+  - 3.6
+
+env:
+  - DJANGO=1.11
+  - DJANGO=1.10
+
+  - PYPUPPETDB=0.1.1
+  - PYPUPPETDB=0.3.2
 
 install:
+  - pip install -q django==$DJANGO
+  - pip install -q pypuppetdb==$PYPUPPETDB
   - pip install -r requirements.txt
   - pip install -r test-requirements.txt
 
