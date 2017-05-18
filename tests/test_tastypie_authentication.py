@@ -1,9 +1,8 @@
 import django
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.test.runner import setup_databases
 from mock import patch, Mock
-from django_pypuppetdb.tastypie_authentication import PuppetDBAuthentication
 
 try:
     import tastypie
@@ -12,8 +11,13 @@ try:
     # Only create a database once
     setup_databases(1, 1)
 
+    User = get_user_model()
+
     class TestTastypieAuthentication(TestCase):
         def setUp(self):
+            from django_pypuppetdb.tastypie_authentication import \
+                PuppetDBAuthentication
+
             self.user = User.objects.create(
                 username='test', email='test@nedap.com')
             self.auth = PuppetDBAuthentication()

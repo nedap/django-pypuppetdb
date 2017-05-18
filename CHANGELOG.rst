@@ -32,3 +32,8 @@ Updating files to make it django 1.8 compatible.
 0.2.1
 =====
 Updating requirements file to newest versions.
+
+0.2.2
+=====
+Updating requirement files. Travis will install different versions of Django for testing.
+We now user get_user_model incase there a custom User model is used.

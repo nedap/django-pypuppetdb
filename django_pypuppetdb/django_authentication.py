@@ -9,12 +9,19 @@ AUTHENTICATION_BACKENDS = (
 import logging
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.contrib.auth.backends import ModelBackend
+from django.core.exceptions import AppRegistryNotReady
+
 from django_pypuppetdb.user_authentication import UserAuthentication
 
 
 logger = logging.getLogger(__name__)
+
+try:
+    UserModel = get_user_model()
+except AppRegistryNotReady:
+    pass
 
 
 class PuppetDBAuthentication(ModelBackend):
@@ -31,7 +38,8 @@ class PuppetDBAuthentication(ModelBackend):
 
         if puppet_user and \
                 UserAuthentication.verify_password(puppet_user, password):
-            new_user, created = User.objects.get_or_create(username=username)
+            new_user, created = UserModel.objects.get_or_create(
+                username=username)
             user_groups = puppet_user.parameters['groups']
 
             if settings.PUPPETDB_ADMIN_GROUP in user_groups:
@@ -43,6 +51,6 @@ class PuppetDBAuthentication(ModelBackend):
 
     def get_user(self, user_id):
         try:
-            return User.objects.get(pk=user_id)
-        except User.DoesNotExist:
+            return UserModel.objects.get(pk=user_id)
+        except UserModel.DoesNotExist:
             return None
